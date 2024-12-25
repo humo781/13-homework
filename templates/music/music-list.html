@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} Music List {% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1 class="animated-text">Music Collection</h1>
+    <a href="{% url 'tracks:create' %}" class="btn pulse"><i class="fas fa-plus"></i> Add New Music</a>
+</section>
+
+<section class="music-list">
+    {% for music in musics %}
+        <div class="music-item glass-effect">
+            <img src="{{ music.image.url }}" alt="Song 1">
+            <div class="music-info">
+                <h3>{{ music.title }}</h3>
+                <p>{{ music.artist }}</p>
+            </div>
+            <div class="music-actions">
+                <a href="{{ music.get_detail_url }}" class="btn btn-info"><i class="fas fa-info-circle"></i></a>
+                <a href="{{ music.get_update_url }}" class="btn btn-edit"><i class="fas fa-edit"></i></a>
+                <a href="{{ music.get_delete_url }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+            </div>
+        </div>
+    {% endfor %}
+
+</section>
+{% endblock %}
